@@ -1,5 +1,5 @@
 
 public interface IAttackable 
 {
-    void Attack();
+    bool Attack(ActiveState state);
 }

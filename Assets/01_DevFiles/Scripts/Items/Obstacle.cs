@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IAttackable
 {
-    public void Attack()
+    public bool Attack(ActiveState _state)
     {
-
+        return false;
     }
 
     

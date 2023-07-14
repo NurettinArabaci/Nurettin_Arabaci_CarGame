@@ -59,7 +59,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     public void NextPlayer()
     {
-
+        
         if (activeIndex >= selectedPlayers.Count - 1) return;
         activeIndex++;
         ResetPlayer();

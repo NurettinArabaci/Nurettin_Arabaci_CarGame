@@ -114,17 +114,22 @@ public class Player : Matchable, IAttackable
             {
                 GameStateEvent.Fire_OnChangeGameState(GameState.Win);
             }
-            
+
+            if (gate.activate == ActiveState.Active)
+                PlayerManager.Instance.NextPlayer();
+
             gate.EnterGate();
 
-            PlayerManager.Instance.NextPlayer();
+            
 
             _movement.StopMove();
 
         }
 
-        if (other.TryGetComponent<IAttackable>(out _))
+        if (other.TryGetComponent(out IAttackable attackable))
         {
+            if (attackable.Attack(ActiveState.Passive)) return;
+
             PlayerManager.Instance.ResetPlayer();
         }
     }
@@ -137,7 +142,8 @@ public class Player : Matchable, IAttackable
 
     }
 
-    public void Attack()
+    public bool Attack(ActiveState state)
     {
+        return state == activate;
     }
 }

@@ -29,7 +29,7 @@ public class PanelBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         transform.localScale = Vector3.zero;
-        transform.DOScale(Vector3.one, 0.25f);
+        transform.DOScale(Vector3.one, 0.15f);
     }
 
     public void OnResetPanel()
@@ -49,6 +49,6 @@ public class PanelBase : MonoBehaviour
     {
         if (panelType != _panelType) return;
 
-        transform.DOScale(Vector3.zero, 0.25f).OnComplete(() => gameObject.SetActive(false));
+        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => gameObject.SetActive(false));
     }
 }
