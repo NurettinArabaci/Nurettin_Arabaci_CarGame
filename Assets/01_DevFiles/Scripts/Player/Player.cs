@@ -17,6 +17,7 @@ public class Player : Matchable, IAttackable
     #region Private Variables
     private ActionRecorder _recorder;
     private PlayerMovement _movement;
+    private SpriteRenderer _activateSign;
     private Rigidbody _rb;
 
     private bool newPlayback = false;
@@ -35,6 +36,7 @@ public class Player : Matchable, IAttackable
         _recorder = GetComponent<ActionRecorder>();
         _movement = GetComponent<PlayerMovement>();
         _rb = GetComponent<Rigidbody>();
+        _activateSign = GetComponentInChildren<SpriteRenderer>();
 
         currentState = State.Reset;
         timer = 0;
@@ -125,6 +127,14 @@ public class Player : Matchable, IAttackable
         {
             PlayerManager.Instance.ResetPlayer();
         }
+    }
+
+    public override void ChangeState(ActiveState _state)
+    {
+        base.ChangeState(_state);
+
+        _activateSign.enabled = activate == ActiveState.Active;
+
     }
 
     public void Attack()

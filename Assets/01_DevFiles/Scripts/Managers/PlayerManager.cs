@@ -50,7 +50,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         foreach (var item in selectedPlayers)
         {
             item.ResetState();
-            item.activate = ActiveState.Passive;
+            item.ChangeState(ActiveState.Passive);
             UIManager.Instance.OnLoseGame();
 
         }
@@ -69,7 +69,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     Player ActiveObject()
     {
-        selectedPlayers[activeIndex].activate = ActiveState.Active;
+        selectedPlayers[activeIndex].ChangeState(ActiveState.Active);
         return selectedPlayers[activeIndex];
     }
 
