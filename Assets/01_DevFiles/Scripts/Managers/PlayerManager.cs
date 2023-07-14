@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
     public List<Player> selectedPlayers = new List<Player>();
@@ -58,6 +59,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     public void NextPlayer()
     {
+
         if (activeIndex >= selectedPlayers.Count - 1) return;
         activeIndex++;
         ResetPlayer();

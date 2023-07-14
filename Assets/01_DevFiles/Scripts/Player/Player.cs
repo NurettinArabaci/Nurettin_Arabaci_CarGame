@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Player : Matchable, IAttackable
 {
-    private ActionRecorder _recorder;
-    private PlayerMovement _movement;
-    private Rigidbody _rb;
-
-
+    #region Enums
     public enum State
     {
         Recording,
         Playback,
         Reset
-
     }
-
     public State currentState;
+    #endregion
 
+    #region Private Variables
+    private ActionRecorder _recorder;
+    private PlayerMovement _movement;
+    private Rigidbody _rb;
 
     private bool newPlayback = false;
     private float timer;
     private float playbackTimer;
+    #endregion
 
     private void Awake()
     {
@@ -83,6 +83,7 @@ public class Player : Matchable, IAttackable
         timer = 0;
         _recorder.ClearHistory();
         currentState = State.Recording;
+        
     }
 
 
@@ -99,8 +100,6 @@ public class Player : Matchable, IAttackable
         _recorder.ResetInput();
         activate = ActiveState.Passive;
 
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -115,9 +114,10 @@ public class Player : Matchable, IAttackable
             }
             
             gate.EnterGate();
+
             PlayerManager.Instance.NextPlayer();
 
-            _rb.velocity = Vector3.zero;
+            _movement.StopMove();
 
         }
 

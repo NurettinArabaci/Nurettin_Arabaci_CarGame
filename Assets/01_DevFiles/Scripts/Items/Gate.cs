@@ -29,7 +29,7 @@ public class Gate : Matchable
     {
         if (activate == ActiveState.Passive) return;
         
-        GateController.Instance.ChangeTransform();
+        GateController.Instance.ChangeActive();
 
     }
 

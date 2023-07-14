@@ -9,7 +9,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     const string Levels = "Levels";
 
-    int levelAmount = 1;
+    int levelAmount = 0;
 
     int ActiveLevel
     {
@@ -23,6 +23,10 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         base.Awake();
         LoadAllLevels();
+        
+    }
+    private void Start()
+    {
         LoadLevel();
     }
 
@@ -46,6 +50,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         levelAmount++;
         LoadLevel();
+        GameStateEvent.Fire_OnChangeGameState(GameState.Begin);
     }
 
 

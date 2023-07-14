@@ -26,7 +26,7 @@ public class GateController : MonoSingleton<GateController>
         }
     }
 
-    public void ChangeTransform()
+    public void ChangeActive()
     {
         _activeGateIndex++;
 

@@ -14,10 +14,21 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
 
 
-    private void OnEnable()
+    private void Awake()
     {
         Initialize();
     }
+
+    #region Subscribe and UnSubscribe events
+    private void OnEnable()
+    {
+        GameStateEvent.OnWinGame += StopMove;
+    }
+    private void OnDisable()
+    {
+        GameStateEvent.OnWinGame -= StopMove;
+    }
+    #endregion
 
     private void Initialize()
     {
@@ -33,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation *= Quaternion.Euler(Vector3.up * inputs.inputValue * rotateSpeed);
     }
 
+    public void StopMove()
+    {
+        _rb.velocity = Vector3.zero;
+    }
+
     public void GivenInputs(RecordData inputs)
     {
         horizontalValue = inputs.inputValue;
@@ -43,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     public void ResetInputs()
     {
         horizontalValue = 0;
-        _rb.velocity = Vector3.zero;
+        StopMove();
         _rb.transform.position = initialPosition;
         _rb.transform.rotation = initialRotation;
         
