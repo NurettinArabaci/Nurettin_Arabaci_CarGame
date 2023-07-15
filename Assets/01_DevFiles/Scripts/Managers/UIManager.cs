@@ -22,6 +22,7 @@ public class UIManager : MonoSingleton<UIManager>
         {
             item.OnResetPanel();
             item.PanelActive(PanelType.Start);
+            
         }
     }
 

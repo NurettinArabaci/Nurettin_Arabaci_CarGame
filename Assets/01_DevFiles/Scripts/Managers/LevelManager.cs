@@ -8,14 +8,20 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] List<GameObject> _levels = new List<GameObject>();
 
     const string Levels = "Levels";
+    const string Level = "Level";
 
-    int levelAmount = 0;
+    public int LevelAmount
+    {
+        get { return PlayerPrefs.GetInt(Level, 0); }
+        set { PlayerPrefs.SetInt(Level, value); }
+    }
+
 
     int ActiveLevel
     {
         get
         {
-            return levelAmount % _levels.Count;
+            return LevelAmount % _levels.Count;
         }
     }
 
@@ -42,13 +48,17 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     public void LoadLevel()
     {
+        if (LevelAmount == 0)
+        {
+
+        }
         DestroyOtherLevels();
         OpenActiveLevel();
     }
 
     public void NextLevel()
     {
-        levelAmount++;
+        LevelAmount++;
         LoadLevel();
         GameStateEvent.Fire_OnChangeGameState(GameState.Begin);
     }
