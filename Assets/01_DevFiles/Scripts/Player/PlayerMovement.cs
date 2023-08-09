@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(RecordData inputs)
     {
-        _rb.velocity = transform.forward * moveSpeed;
-        transform.rotation *= Quaternion.Euler(Vector3.up * inputs.inputValue * rotateSpeed);
+        _rb.velocity = transform.forward * moveSpeed * Time.deltaTime*100;
+        transform.rotation *= Quaternion.Euler(Vector3.up * inputs.inputValue * rotateSpeed * Time.deltaTime*100);
     }
 
     public void StopMove()

@@ -15,7 +15,6 @@ public class InputManager : MonoSingleton<InputManager>, IPointerDownHandler, IP
         get { return rotValue; }
     }
 
-
     public void OnPointerDown(PointerEventData eventData)
     {
         isDragging = true;
